@@ -1,6 +1,8 @@
 // List of categories for blog posts
 export const CATEGORIES = [
 	'Book',
+	'Posts',
+	'CV',
 	'Category 1',
 	'Category 2',
 	'Category 3',
