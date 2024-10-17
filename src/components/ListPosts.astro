@@ -9,6 +9,19 @@ type Props = {
 }
 
 const { posts, FirstBig = false } = Astro.props
+
+// Sort posts: pinned posts first, then by date
+const sortedPosts = posts.sort((a, b) => {
+	// Check if posts are pinned
+	const pinnedA = a.data.pinned || false
+	const pinnedB = b.data.pinned || false
+
+	if (pinnedA && !pinnedB) return -1
+	if (!pinnedA && pinnedB) return 1
+
+	// If neither or both are pinned, sort by date (most recent first)
+	return new Date(b.data.date) - new Date(a.data.date)
+})
 ---
 
 <section
@@ -18,7 +31,7 @@ const { posts, FirstBig = false } = Astro.props
 	)}
 >
 	{
-		posts.map(async (post) => {
+		sortedPosts.map(async (post) => {
 			const { remarkPluginFrontmatter } = await post.render()
 
 			return (
