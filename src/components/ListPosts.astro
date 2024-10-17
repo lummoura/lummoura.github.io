@@ -12,9 +12,11 @@ const { posts, FirstBig = false } = Astro.props
 
 // Sort posts: pinned posts first, then by date
 const sortedPosts = posts.sort((a, b) => {
+        const pinnedA = a.data.pinned === 'true';
+        const pinnedB = b.data.pinned === 'true';
 	// Check if posts are pinned
-	const pinnedA = a.data.pinned || false
-	const pinnedB = b.data.pinned || false
+	//const pinnedA = a.data.pinned || false
+	//const pinnedB = b.data.pinned || false
 
 	if (pinnedA && !pinnedB) return -1
 	if (!pinnedA && pinnedB) return 1
