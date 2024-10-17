@@ -26,6 +26,10 @@
 	  color: var(--shiki-dark) !important;
 	  background-color: theme(colors.gray.900) !important;
 	}
+	/* Center all images */
+	img {
+		@apply mx-auto block;
+	}
 }
 
 .glass {
