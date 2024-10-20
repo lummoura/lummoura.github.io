@@ -3,6 +3,7 @@ export const CATEGORIES = [
 	'Book',
 	'Posts',
 	'CV',
+	'Bio',
 	'Category 1',
 	'Category 2',
 	'Category 3',
