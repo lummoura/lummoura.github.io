@@ -7,11 +7,12 @@ category: 'Category 1'
 tags: ['Bio', 'Biography']
 ---
 import { Image } from 'astro:assets';
+import myImage from '../../assets/images/foto_blog.jpg';
 
 
 Hi there, I'm Luciana! 
 <br/>
-<Image alt="imageLU" src="../../assets/images/foto_blog.jpg"/>
+<Image alt="imageLU" src={myImage} width="10%"/>
 <div style="width:30%">
 ![fotoLuciana](../../assets/images/foto_blog.jpg)
 </div>
