@@ -14,7 +14,7 @@ My turning point came when I became a visiting researcher and principal investig
 
 Once again—no comfort zone in sight.
 
-**Congenital Zika Syndrome** - [CZS] (https://www.cdc.gov/zika/czs/index.html) is no joke. It’s a serious condition caused by the Zika virus in pregnant women, resulting in birth defects like microcephaly (babies born with smaller-than-normal heads due to abnormal brain development). Other symptoms include vision and hearing problems, joint deformities, and developmental delays. CZS emerged as a massive public health concern during the mid-2010s Zika outbreak, and it continues to affect patients and families today.
+**Congenital Zika Syndrome** - [CZS](https://www.cdc.gov/zika/czs/index.html) is no joke. It’s a serious condition caused by the Zika virus in pregnant women, resulting in birth defects like microcephaly (babies born with smaller-than-normal heads due to abnormal brain development). Other symptoms include vision and hearing problems, joint deformities, and developmental delays. CZS emerged as a massive public health concern during the mid-2010s Zika outbreak, and it continues to affect patients and families today.
 
 The ZIKA group was part of the ambitious Medical Approach Research in Imaging and Algorithms (PROADI-MARIA) project, which aimed to improve the understanding of tuberculosis, melanoma, and CZS. This massive task force included data scientists, engineers, medical doctors, and researchers, all working together to use real-world data to develop algorithms for disease classification, including ZIKA syndrome.
 
@@ -26,9 +26,9 @@ This wasn’t like academia at all. In academia, collaboration is often individu
 
 Here’s what I was exposed to:
 
-* * Language: I learned to speak the corporate lingo and translate scientific terms for different stakeholders (and learned what a stakeholder actually was).
-* * Project Management*: While academia is a bit more intuitive, the corporate world follows structured frameworks like Agile project management—sprints, backlogs, scrum master, and all that jazz. It was all new to me, but I adapted quickly.
-- * Product Lifecycle & Service Design*: Terms like these hit me hard at first (service design? What?). But soon enough, I was rolling with it. Agile project management became my new reality, and I even got my own key to a small room near the MRI (kindly provided by my boss) to keep my sanity and focus when needed.
+* Language: I learned to speak the corporate lingo and translate scientific terms for different stakeholders (and learned what a stakeholder actually was).
+* Project Management: While academia is a bit more intuitive, the corporate world follows structured frameworks like Agile project management—sprints, backlogs, scrum master, and all that jazz. It was all new to me, but I adapted quickly.
+* Product Lifecycle & Service Design: Terms like these hit me hard at first (service design? What?). But soon enough, I was rolling with it. Agile project management became my new reality, and I even got my own key to a small room near the MRI (kindly provided by my boss) to keep my sanity and focus when needed.
 
 **A Typical Month**
 
@@ -36,7 +36,7 @@ An ordinary month looked something like this:
 
 * Working on [my favorite article](https://www.frontiersin.org/journals/neuroscience/articles/10.3389/fnins.2021.654078/full) – a deep dive beyond neuroscience, making me feel like a biologist again.
 * Learning about service design, machine learning, deep learning, and trying to figure out who Jason is (it turns out he’s JSON—tech humor, right?).
-* Becoming a huge fan of *GANs* (Generative Adversarial Networks, aka, AI wizardry that creates things out of nothing—it’s like magic for data scientists).
+* Becoming a huge fan of **GANs** (Generative Adversarial Networks, aka, AI wizardry that creates things out of nothing—it’s like magic for data scientists).
 * Mentoring junior researchers and sharing my love of science.
 * Adding files to Trello (not exactly thrilling, but necessary—Giulia, you’re the best!).
 * Attending a *lot* of meetings: daily scrum meetings, meetings with analytics teams, with the scrum master, with the design guy, and even check-ins with the other groups (melanoma and tuberculosis), cohorts meetings. I learned a lot from melanoma about how tough the patient journey can be, and tuberculosis? Let’s just say I thought humanity had this one under control by now!
@@ -47,26 +47,33 @@ An ordinary month looked something like this:
 
 **When MRI Isn’t an Option**
 
-The project was built around real-world images, but here's the thing: MRI scans, the usual go-to for neuroimaging, weren’t an option. They’re expensive and often unavailable outside of the biggest cities. The populations most affected by CZS are usually located in smaller cities, where MRI machines are hard to come by. So, we had to rely on CT images instead. And let me tell you, this was the biggest challenge of my career—switching to a new neuroimaging modality.
-Working with CT images isn’t trivial. While there are tons of tools available to analyze MRI images, the same cannot be said for CT scans. We found ourselves developing new tools from scratch to tackle this gap.
+The project was built around **real-world images**, but here's the thing: MRI scans, the usual go-to for neuroimaging, weren’t an option. They’re expensive and often unavailable outside of the biggest cities. The populations most affected by CZS are usually located in smaller cities, where MRI machines are hard to come by. So, we had to rely on CT images instead. And let me tell you, this was the biggest challenge of my career—switching to a new neuroimaging modality.
+
+**Working with CT images isn’t trivial.** While there are tons of tools available to analyze MRI images, the same cannot be said for CT scans. We found ourselves developing new tools from scratch to tackle this gap.
 Brain malformations were another big hurdle. In brain group analysis, you can't compare apples to oranges—two brains with wildly different anatomies can’t be analyzed in the same space. This is a problem we often face in cases like stroke or tumors, but here it was even more pronounced with CZS. To get around this, we had to design deep learning networks just to handle basic tasks like skull stripping—removing the skull from the images to get to the brain. Simple in theory, but it takes time and expertise to do right.
-Another unexpected issue? Data scarcity. Cohorts weren't as eager to share datasets as we’d hoped, leading to a shortage of data. This scarcity pushed us to shift focus away from diagnostics and towards features—key aspects of CZS that overlap with other brain diseases, like intracranial calcifications.
-And here's the thing: Machine learning doesn't work miracles. ML models need a gold standard to learn from—usually provided by doctors. But since CZS is still under investigation and its classification is evolving, we couldn’t rely on the traditional diagnostic approach. So, again, we doubled down on features, allowing us to make progress even without a clear-cut diagnostic gold standard.
+
+Another unexpected issue? **Data scarcity**. Cohorts weren't as eager to share datasets as we’d hoped, leading to a shortage of data. This scarcity pushed us to shift focus away from diagnostics and towards features—key aspects of CZS that overlap with other brain diseases, like intracranial calcifications. And here's the thing: Machine learning doesn't work miracles. ML models need a gold standard to learn from—usually provided by doctors. But since CZS is still under investigation and its classification is evolving, we couldn’t rely on the traditional diagnostic approach. So, again, we doubled down on features, allowing us to make progress even without a clear-cut diagnostic gold standard.
+
 Some frustrations remain, and I’d love to share them with you...but most of them are wrapped up in NDAs. So, not today, folks!
 
 
  
-The Fun Part
+**The Fun Part**
+
 The young, energetic atmosphere reminded me of my high school days—I absolutely loved it. There was this contagious buzz of excitement, curiosity, and a "let's figure this out together" vibe that kept me on my toes. It wasn't just about sitting behind a desk or getting lost in papers (though I still did plenty of that)—it was about collaborating, brainstorming over coffee, and solving problems in real time with some incredibly sharp minds.
+
 One of my favorite parts was teaching scientific methodology to my team. It was like watching lightbulbs go off in people’s heads as we dissected the intricacies of research design, data collection, and analysis. I was explaining ZIKA biology to a diverse mix of researchers and data scientists, many of whom had never worked with such biological complexity before. Seeing their excitement as they dove into the world of CZS, connecting the dots between biology and data, was infectious.
+
 But I wasn’t just the teacher—I was the student too. The sheer variety of topics we explored kept things fresh. One minute, I’d be learning deep learning (yes, it took me a minute to wrap my head around some of those algorithms) from the data scientists, and the next, I’d be discussing clinical implications of CZS with doctors. It was such an enriching experience, balancing the hardcore science with real-world applications, and constantly picking up new skills from my team.
+
 And then, there was the hospital itself. Hospital Israelita Albert Einstein is something from another world—high-tech, cutting-edge, and damn beautiful. I was always getting lost in its endless corridors! I’d find myself wandering around, both in awe of the place and completely confused about where I was supposed to be. It was all part of the charm though—working in a place that was as modern as it was impressive.
+
 There were plenty of laughs too—whether it was struggling to figure out who "Jason" was before realizing it was actually JSON, or the time someone called our daily scrum meetings "scrambled eggs" (it stuck for a while). The energy was infectious, and it reminded me that science doesn’t always have to be serious. Sometimes, the best discoveries happen when you’re having fun.
  
-A Special Thanks
+**A Special Thanks**
 I want to give a heartfelt thank you to my incredible team. Without their passion, commitment, and brilliance, none of this would have been possible. And a special thanks to Bira, my boss, who supported me every step of the way—providing guidance, a space to think (and breathe!), and always reminding me to keep pushing forward.
  
-A Meaningful Mission
+**A Meaningful Mission**
 On a more serious note, working on this project touched me deeply. The diseases we were tackling—CZS, tuberculosis, and melanoma—are incredibly harsh. Each affects so many lives, and often in ways that are painful and devastating, both for the patients and their families. Being able to contribute even a small part to understanding and fighting these diseases filled me with a sense of purpose and pride.
 I often reflected on how important this work was, especially knowing that the tools and insights we were developing could one day make a real difference. Working on such impactful research, alongside a team that cared just as much, was truly a gift. It reminded me that in science, our work can have real-world consequences—helping people, improving health, and potentially saving lives.
 Every challenge we faced was worth it, knowing that we were working toward something greater than ourselves.
@@ -74,10 +81,12 @@ Every challenge we faced was worth it, knowing that we were working toward somet
 
 
 
-BONUS
+**BONUS**
  
 MRI vs. CT Scans: What's the Difference?
+
 Both MRI (Magnetic Resonance Imaging) and CT (Computed Tomography) scans capture detailed images of the inside of the body, but they work differently and are suited for different purposes.
-•	MRI uses powerful magnets and radio waves to create detailed images, which are especially useful for soft tissues like the brain, muscles, and nerves. It provides a high-resolution image and is often used to study the brain, spinal cord, and joints. However, MRI scans are more expensive and take longer to perform.
-•	CT scans use X-rays to create cross-sectional images of the body and are particularly good at showing bones and detecting bleeding or fractures. CT is quicker and less costly than MRI, making it more accessible in many healthcare settings. However, it doesn’t provide the same level of detail for soft tissues as MRI.
+
+* MRI uses powerful magnets and radio waves to create detailed images, which are especially useful for soft tissues like the brain, muscles, and nerves. It provides a high-resolution image and is often used to study the brain, spinal cord, and joints. However, MRI scans are more expensive and take longer to perform.
+* CT scans use X-rays to create cross-sectional images of the body and are particularly good at showing bones and detecting bleeding or fractures. CT is quicker and less costly than MRI, making it more accessible in many healthcare settings. However, it doesn’t provide the same level of detail for soft tissues as MRI.
 In summary, MRI gives a more detailed view of soft tissues, while CT is faster and better suited for detecting bone or structural issues.
