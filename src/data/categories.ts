@@ -2,7 +2,7 @@
 export const CATEGORIES = [
 	'Book',
 	'Posts',
-	'Art',
+	'Bio_Art',
 	'Bio',
 	'Category 1',
 	'Category 2',
