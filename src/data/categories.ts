@@ -5,7 +5,7 @@ export const CATEGORIES = [
 	'Bio_Art',
 	'Bio',
 	'PM',
-	'Category 2',
+	'Chroniques',
 	'Category 3',
 	'Category 4',
 	'Category 5'
