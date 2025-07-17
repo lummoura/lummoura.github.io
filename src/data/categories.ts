@@ -4,9 +4,9 @@ export const CATEGORIES = [
 	'Posts',
 	'Bio_Art',
 	'Bio',
-	'Healthcare',
+	'PM',
 	'Chroniques',
 	'Brain',
-	'Category 4',
+	'Healthcare',
 	'Category 5'
 ] as const
