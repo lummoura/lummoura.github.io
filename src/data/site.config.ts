@@ -9,8 +9,8 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	author: 'Luciana Monteiro de Moura', // Site author
-	title: 'Impatient Ms Science', // Site title.
+	author: 'Luciana Bonnot', // Site author
+	title: 'K-Space Studio', // Site title.
 	description: "Luciana's Science Blog", // Description to display in the meta tags
 	lang: 'en-GB',
 	ogLocale: 'en_GB',
