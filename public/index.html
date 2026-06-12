@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K-space Studio — Luciana Bonnot, PhD</title>
+  <meta name="description" content="Where ideas live before they become frameworks. Science, art, and structured learning by Luciana Bonnot, PhD." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:    '#050508',
+            frost:  '#F0EDE6',
+            mist:   '#B4C8D8',
+            ash:    '#8096AA',
+            teal:   '#00C8B8',
+            teallt: '#30E8D0',
+            fire:   '#E8621A',
+            firelt: '#F57C3A',
+            steel:  '#1C1F26',
+            wire:   '#2A2E38',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body:    ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+            label:   ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #050508; color: #F0EDE6; font-family: 'IBM Plex Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-thumb { background: #2A2E38; }
+
+    #site-header { transition: background 0.3s, box-shadow 0.3s; }
+    #site-header.scrolled {
+      background: rgba(5,5,8,0.95);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(232,98,26,0.15);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    /* animated conic burst */
+    .burst-layer {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .burst-layer::before {
+      content: '';
+      position: absolute;
+      inset: -60%;
+      background: conic-gradient(
+        from 0deg at 50% 50%,
+        transparent         0deg,
+        rgba(0,200,184,.18) 25deg,
+        transparent         55deg,
+        rgba(232,98,26,.15) 100deg,
+        transparent         130deg,
+        rgba(0,200,184,.13) 190deg,
+        transparent         220deg,
+        rgba(232,98,26,.18) 270deg,
+        transparent         300deg,
+        rgba(0,200,184,.12) 340deg,
+        transparent         360deg
+      );
+      animation: spin 40s linear infinite;
+    }
+    .burst-layer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 50%, rgba(232,98,26,.22) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 50%, rgba(0,200,184,.18) 8%, transparent 55%);
+      animation: breathe 5s ease-in-out infinite alternate;
+    }
+    @keyframes spin    { to { transform: rotate(360deg); } }
+    @keyframes breathe { from { opacity:.7; } to { opacity:1; } }
+
+    /* bottom-fade so title reads cleanly */
+    .gradient-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(5,5,8,.98) 0%,
+        rgba(5,5,8,.65) 35%,
+        rgba(5,5,8,.10) 70%,
+        transparent     100%
+      );
+    }
+
+    /* stacked title */
+    .k-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 0.9; letter-spacing: -0.03em; }
+    .k-title .word-k      { display: block; font-size: clamp(5rem, 14vw, 11rem); color: #F0EDE6; }
+    .k-title .word-space  { display: block; font-size: clamp(4.5rem, 12vw, 9.5rem); color: #E8621A; }
+    .k-title .word-studio { display: block; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 300; color: rgba(240,237,230,.45); letter-spacing: 0.05em; }
+
+    /* scroll line */
+    .scroll-line {
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, rgba(232,98,26,.6), transparent);
+      animation: grow 2s ease-in-out infinite alternate;
+    }
+    @keyframes grow { from { height:40px; opacity:.4; } to { height:70px; opacity:.9; } }
+
+    /* ── DIVIDER ── */
+    .divider { height:1px; background: linear-gradient(to right, transparent, #2A2E38 30%, #2A2E38 70%, transparent); }
+
+    /* ── ABOUT QUOTE ── */
+    .about-quote { font-family: 'Space Grotesk', sans-serif; font-weight: 300; font-size: clamp(1.4rem, 3.5vw, 2.2rem); line-height: 1.35; color: #F0EDE6; }
+    .about-quote em { color: #E8621A; font-style: normal; }
+
+    /* ── LINK CARDS ── */
+    .site-link {
+      display: block; border: 1px solid #2A2E38; padding: 1.1rem 1.4rem;
+      text-decoration: none; transition: border-color .2s, background .2s;
+      position: relative; overflow: hidden;
+    }
+    .site-link::before {
+      content: ''; position: absolute; left:0; top:0; bottom:0; width: 2px;
+      background: #E8621A; transform: scaleY(0); transform-origin: bottom; transition: transform .25s ease;
+    }
+    .site-link:hover { border-color: #E8621A; background: rgba(232,98,26,0.04); }
+    .site-link:hover::before { transform: scaleY(1); }
+
+    /* ── COURSE CARD ── */
+    .course-card {
+      position: relative; border: 1px solid #E8621A;
+      background: rgba(232,98,26,.04); padding: 3rem;
+      max-width: 700px; margin: 3rem auto 0;
+    }
+    .course-card::before {
+      content: 'FIRST RELEASE'; position: absolute; top: -0.65rem; left: 2.5rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: .62rem; letter-spacing: .22em;
+      background: #050508; padding: 0 .75rem; color: #E8621A;
+    }
+    .course-card::after {
+      content: ''; position: absolute; top: -1px; right: -1px;
+      width: 32px; height: 32px; background: #E8621A;
+      clip-path: polygon(100% 0, 0 0, 100% 100%);
+    }
+
+    /* ── NOTIFY FORM ── */
+    .notify-wrap { display: flex; max-width: 440px; margin-top: 2rem; }
+    .notify-wrap input[type="email"] {
+      flex:1; background: #1C1F26; border: 1px solid #2A2E38; border-right: none;
+      color: #F0EDE6; font-family: 'IBM Plex Sans', sans-serif; font-size: .88rem;
+      padding: .8rem 1.1rem; outline: none; transition: border-color .2s;
+    }
+    .notify-wrap input:focus { border-color: #E8621A; }
+    .notify-wrap input::placeholder { color: #8096AA; }
+    .notify-wrap button {
+      font-family: 'IBM Plex Mono', monospace; font-size: .72rem; letter-spacing: .1em;
+      text-transform: uppercase; background: #E8621A; color: #050508; font-weight: 500;
+      padding: .8rem 1.5rem; border: none; cursor: pointer; white-space: nowrap; transition: background .2s;
+    }
+    .notify-wrap button:hover { background: #F57C3A; }
+
+    [data-anim] { opacity:0; transform:translateY(20px); transition: opacity .65s ease, transform .65s ease; }
+    [data-anim].in-view { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+
+<body class="bg-ink text-frost font-body antialiased">
+
+  <!-- ═══════════════════════════════════════════
+       NAV
+  ═══════════════════════════════════════════ -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+
+      <a href="#home" class="group leading-none">
+        <p class="font-display font-semibold tracking-wide text-teal text-base group-hover:text-teallt transition-colors">K-space Studio</p>
+        <p class="font-label text-xs tracking-[0.18em] text-frost/30 mt-0.5">Luciana Bonnot, PhD</p>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#course" class="font-label text-xs tracking-[0.14em] uppercase text-ash hover:text-fire transition-colors">Course</a>
+        <a href="#about"  class="font-label text-xs tracking-[0.14em] uppercase text-ash hover:text-frost transition-colors">Studio</a>
+        <span class="w-px h-4 bg-wire"></span>
+        <a href="https://lummiens.com"            target="_blank" class="font-label text-xs tracking-[0.14em] uppercase text-ash/60 hover:text-teal transition-colors">lummiens.com ↗</a>
+        <a href="https://lucianabonnot.github.io" target="_blank" class="font-label text-xs tracking-[0.14em] uppercase text-ash/60 hover:text-teal transition-colors">lucianabonnot.github.io ↗</a>
+      </nav>
+
+      <button id="nav-btn" class="md:hidden text-frost p-1" aria-label="Toggle menu">
+        <svg id="icon-menu" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="nav-menu" style="max-height:0;overflow:hidden;transition:max-height .4s ease;" class="md:hidden border-t border-wire bg-ink/98">
+      <div class="px-6 py-5 flex flex-col gap-5">
+        <a href="#course" class="font-label text-xs tracking-[0.16em] uppercase text-ash hover:text-fire transition-colors">Course</a>
+        <a href="#about"  class="font-label text-xs tracking-[0.16em] uppercase text-ash hover:text-frost transition-colors">Studio</a>
+        <a href="https://lummiens.com"            target="_blank" class="font-label text-xs tracking-[0.16em] uppercase text-ash hover:text-teal transition-colors">lummiens.com ↗</a>
+        <a href="https://lucianabonnot.github.io" target="_blank" class="font-label text-xs tracking-[0.16em] uppercase text-ash hover:text-teal transition-colors">lucianabonnot.github.io ↗</a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section id="home" class="hero">
+    <div class="burst-layer"></div>
+    <div class="gradient-veil"></div>
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-6 pb-16 pt-32" data-anim>
+      <h1 class="k-title">
+        <span class="word-k">K</span>
+        <span class="word-space">space</span>
+        <span class="word-studio">Studio</span>
+      </h1>
+      <p class="font-label mt-6 text-teal" style="font-size: clamp(0.7rem, 1.5vw, 0.88rem); letter-spacing: 0.1em;">
+        // where the signal lives before it becomes a picture
+      </p>
+    </div>
+
+    <div class="scroll-line"></div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ═══════════════════════════════════════════ -->
+  <section id="about">
+    <div class="max-w-6xl mx-auto px-6 py-24">
+      <div class="grid md:grid-cols-[1fr_340px] gap-16 items-start" data-anim>
+
+        <div>
+          <p class="font-label text-xs tracking-[0.28em] uppercase text-fire mb-8">The Studio</p>
+          <p class="about-quote">
+            In MRI, k-space holds the raw frequency data before the Fourier transform renders it as an image. That <em>unresolved, generative space</em> — full of signal, not yet structured — is exactly the spirit here.
+          </p>
+          <p class="font-body text-mist text-sm leading-relaxed mt-6 max-w-xl">
+            K-space Studio is where thinking happens before it becomes a framework. Essays, science communication, and structured learning — the intellectual companion to Lummiens, not its copy.
+          </p>
+        </div>
+
+        <div>
+          <p class="font-label text-xs tracking-[0.18em] uppercase text-ash mb-4">Also find me at</p>
+          <div class="flex flex-col gap-3">
+            <a href="https://lummiens.com" target="_blank" class="site-link">
+              <p class="font-label text-xs tracking-[0.12em] uppercase text-ash mb-1">Consulting</p>
+              <p class="font-display text-sm font-medium text-frost">lummiens.com</p>
+              <p class="font-body text-xs text-mist mt-1">Neuroimaging biomarker strategy for CNS trials</p>
+            </a>
+            <a href="https://lucianabonnot.github.io" target="_blank" class="site-link">
+              <p class="font-label text-xs tracking-[0.12em] uppercase text-ash mb-1">Professional Profile</p>
+              <p class="font-display text-sm font-medium text-frost">lucianabonnot.github.io</p>
+              <p class="font-body text-xs text-mist mt-1">Background, expertise, and the NdDB Readiness Map</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+
+  <!-- ═══════════════════════════════════════════
+       COURSES
+  ═══════════════════════════════════════════ -->
+  <section id="course">
+    <div class="max-w-6xl mx-auto px-6 py-24" data-anim>
+
+      <p class="font-label text-xs tracking-[0.28em] uppercase text-teal mb-4">Learning</p>
+      <h2 class="font-display font-semibold text-frost leading-tight mb-3"
+          style="font-size: clamp(2rem, 5vw, 3.2rem);">Courses</h2>
+      <p class="font-body text-mist text-sm leading-relaxed max-w-xl mb-12">
+        Science that doesn't stay in the lab. Two tracks: one for anyone curious about the brain, one coming for clinical teams navigating neuroimaging decisions.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Card 1: Udemy course — available now -->
+        <div class="relative border border-teal p-8" style="background: rgba(0,200,184,0.04);">
+          <span class="absolute -top-2.5 left-6 font-label text-xs tracking-[0.2em] bg-ink px-2 text-teal">
+            AVAILABLE NOW
+          </span>
+          <span class="absolute -top-1 -right-1 w-6 h-6 bg-teal"
+                style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></span>
+
+          <p class="font-label text-xs tracking-[0.14em] uppercase text-ash mb-3">Neuroscience · General audience</p>
+          <h3 class="font-display font-semibold text-frost leading-snug mb-3"
+              style="font-size: clamp(1.1rem, 2.2vw, 1.4rem);">
+            Do You Speak Brain?<br/>
+            <span class="font-light text-mist">Master the Neuroscience Behind Learning</span>
+          </h3>
+          <p class="font-body text-mist text-sm leading-relaxed mb-2">
+            How the brain builds, adapts, and strengthens learning across life — explained through biology, evolution, and cognition. No neuroscience background required.
+          </p>
+          <p class="font-label text-xs text-ash mb-6">7 sections · 18 lectures · 3h 35m</p>
+
+          <a href="https://www.udemy.com/course/the-learning-brain/" target="_blank"
+             class="inline-block font-label text-xs tracking-[0.1em] uppercase bg-teal text-ink font-medium px-6 py-2.5
+                    hover:bg-teallt transition-colors">
+            View on Udemy ↗
+          </a>
+        </div>
+
+        <!-- Card 2: Coming soon -->
+        <div class="relative border border-fire p-8" style="background: rgba(232,98,26,0.04);">
+          <span class="absolute -top-2.5 left-6 font-label text-xs tracking-[0.2em] bg-ink px-2 text-fire">
+            COMING SOON
+          </span>
+          <span class="absolute -top-1 -right-1 w-6 h-6 bg-fire"
+                style="clip-path: polygon(100% 0, 0 0, 100% 100%);"></span>
+
+          <p class="font-label text-xs tracking-[0.14em] uppercase text-ash mb-3">Neuroimaging · Clinical teams</p>
+          <h3 class="font-display font-semibold text-frost leading-snug mb-3"
+              style="font-size: clamp(1.1rem, 2.2vw, 1.4rem);">
+            First K-space course —<br/>
+            <span class="font-light text-mist">title and topic coming soon.</span>
+          </h3>
+          <p class="font-body text-mist text-sm leading-relaxed mb-6">
+            Framework and vocabulary first, before vendor conversations and protocol lock. Get notified when it opens.
+          </p>
+
+          <form id="notifyForm" class="notify-wrap">
+            <input type="email" placeholder="your@email.com" aria-label="Email" required />
+            <button type="submit">Notify me</button>
+          </form>
+          <p id="notifyThanks" class="hidden font-label text-xs tracking-[0.12em] text-teal mt-3">
+            Thank you — we'll be in touch.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="border-t border-wire">
+    <div class="max-w-6xl mx-auto px-6 py-12 text-center">
+
+      <p class="font-display font-semibold text-teal text-base mb-1">K-space Studio</p>
+      <p class="font-label text-xs tracking-[0.18em] text-ash mb-8">by Luciana Bonnot, PhD</p>
+
+      <div class="flex gap-8 justify-center flex-wrap mb-8">
+        <a href="https://lummiens.com"            target="_blank" class="font-label text-xs tracking-[0.14em] uppercase text-ash hover:text-fire transition-colors">lummiens.com</a>
+        <a href="https://lucianabonnot.github.io" target="_blank" class="font-label text-xs tracking-[0.14em] uppercase text-ash hover:text-fire transition-colors">lucianabonnot.github.io</a>
+        <a href="https://www.linkedin.com/in/bonnot-luciana/" target="_blank" class="font-label text-xs tracking-[0.14em] uppercase text-ash hover:text-fire transition-colors">LinkedIn</a>
+      </div>
+
+      <p class="font-body text-xs text-ash/30">© 2026 Luciana Bonnot. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40));
+
+    const navBtn    = document.getElementById('nav-btn');
+    const navMenu   = document.getElementById('nav-menu');
+    const iconMenu  = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    navBtn.addEventListener('click', () => {
+      const open = navMenu.style.maxHeight !== '0px' && navMenu.style.maxHeight !== '';
+      navMenu.style.maxHeight = open ? '0' : '400px';
+      iconMenu.classList.toggle('hidden', !open);
+      iconClose.classList.toggle('hidden', open);
+    });
+
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('[data-anim]').forEach(el => obs.observe(el));
+
+    document.getElementById('notifyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('notifyThanks').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
